@@ -10,6 +10,6 @@ Use-o sem moderação e fique à vontate para icrementar a lista.
 
 Os arquivos terão o nome do OS em questão e neles serão escrito os comandos dividindo por temas.
 
- - Linux
+ - [Linux](https://github.com/Rlvenancio2021/comandos/blob/main/linux.txt)
 
- - Apple
+ - [Apple](https://github.com/Rlvenancio2021/comandos/blob/main/apple.txt)

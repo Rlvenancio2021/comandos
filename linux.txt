@@ -1,0 +1,52 @@
+### Comandos para atualização do sistema ###
+
+1. sudo apt update - Comando que lista todos os pacotes que precisam ser instalados
+
+1.2 apt list --upgradeable - Comando para exibir os pacotes a serem atualizados
+
+2. sudo apt upgrade - Comando para realizar as atualizações listadas
+
+3. lsb_release -rs - Comando para verificar a versão do Linux.
+
+
+### Comandos para instalação do MySQL ###
+
+1. # Instalando o MySQl e verificando status do sistema #
+
+1.1. sudo apt install mysql-server - Comando para realizar a instação do MySQL
+
+1.2. service mysql status - Comando para verificar o status do servidor MySQL
+
+1.2.1 sudo service mysql stop - Comando para parar o servidor MySQL. "start" para iniciar e "restart" para reiniciar
+
+1.3. mysql --version - Comando para verificar a versão do mysql
+
+2. # Configurando o MySQL #
+
+2.1 sudo mysql_secure_installation - Altera configurações de segurança
+
+2.3 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password'; - Comando para altar o usário root, faz com que solicite uma senha de autenticação. No 'password' é o local onde ESCREVEMOS a SENHA DESEJADA.
+
+3 # Comando de execução #
+
+3.1 sudo mysql - Para executar o MySQL em linhas de código, caso a senho do usuário já estiver cadastrada trabalhar com os parametros -u<nome do usuário> -p ENTER para digitar a senha do usuário.
+
+
+## Instalando a MySQL Workbench ##
+
+1. # Instalação por linhas de comandos #
+
+1.1 Roda UPDATE para verificar os pacotes do Linux.
+
+1.2 wget <url> - Para baixar o programa da internet por linhas de código. É necessário saber o url completa
+
+1.3 sudo dpkg -i <nome do arquivo a ser instalado>.
+
+1.3.1 sudo apt-get -f install - Para instalar a dependencias.
+
+1.4 /usr/bin/mysql-workbench - Para abrir o sistema
+
+1.5 Para o WorkBench conectar no MySQL server é necessário rodar os dois comandos abaixo:
+
+	sudo snap connect mysql-workbench-community:ssh-keys
+	sudo snap connect mysql-workbench-community:password-manager-service

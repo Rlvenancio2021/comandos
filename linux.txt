@@ -8,6 +8,8 @@
 
 3. lsb_release -rs - Comando para verificar a versão do Linux.
 
+4. sudo apt install gcc make perl curl - Instalação de pacote padr
+
 
 ### Comandos para instalação do MySQL ###
 

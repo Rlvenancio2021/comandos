@@ -52,3 +52,12 @@
 
 	sudo snap connect mysql-workbench-community:ssh-keys
 	sudo snap connect mysql-workbench-community:password-manager-service
+
+
+## Comandos do Python ##
+
+1. Necessário instalar o gerenciador de pacotes PIP comando: sudo apt install python3-pip
+2. Necessário instalar Python3-venv comando: apt install python3.10-venv e sudo pip3 install virtualenv
+3. Rodar comando de criação da pasta venv: python3 -m venv ./venv #nome dado ao arquivo
+4. Rodar comando para ativar o ambiente virtual: surce <caminho da pasta (opcional)> venv/bin/activate
+5. Para desativar o ambiente virtual: deactivate

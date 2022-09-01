@@ -26,4 +26,4 @@
  - ls - Comando para verificar conteúdo do diretorio
  	- Variações: ls -a - mostra arquivos ocultos
 		     ls -l - mostra os arquivos de forma mais estruturada
-		     ls -al ~/ - mostra todas as pastas a partir da raiz
+		     ls -al ~/ - mostra todas as pastas a partir da raiz 

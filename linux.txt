@@ -10,6 +10,10 @@
 
 4. sudo apt install gcc make perl curl - Instalação de pacote padr
 
+### Comandos para instalação de pacotes e programas
+
+Virtual Box
+ sudo apt-get install virtualbox
 
 ### Comandos para instalação do MySQL ###
 

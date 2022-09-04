@@ -18,6 +18,8 @@
  - pwd - mostra o caminho da pasta atual
  - cd - abre o diretorio
  - cd ~/<nome do diretorio> abre o diretorio
+ - cd ../<nome do diretorio> troca de um diretorio para o outro em um único comando
+	//Caso necessário voltar duas pastas fica "cd ../../<caminho do diretório desejado>"
  - command + k - Limpa a tela do terminal
  - command + l - Limpa parcialmente a tela do termianl
  - clear - Limpa a tela do terminal

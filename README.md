@@ -14,4 +14,8 @@ Os arquivos terão o nome do OS em questão e neles serão escrito os comandos d
 
  - [Apple](https://github.com/Rlvenancio2021/comandos/blob/main/apple.txt)
 
- - [Git]()(https://github.com/Rlvenancio2021/comandos/blob/main/git.md)
+ - [Git](https://github.com/Rlvenancio2021/comandos/blob/main/git.md)
+ 
+ - [Links úteis](https://github.com/Rlvenancio2021/comandos/blob/main/links_uteis.md)
+ 
+ - [Python](https://github.com/Rlvenancio2021/comandos/blob/main/python.md)

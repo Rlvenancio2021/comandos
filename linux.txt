@@ -10,6 +10,11 @@
 
 4. sudo apt install gcc make perl curl - Instalação de pacote padr
 
+## Teclas de atalho no terminal
+
+ - ctrl + shift + C //Copiar
+ - ctrl + shift + V //Colar
+
 ### Comandos para instalação de pacotes e programas
 
 Virtual Box

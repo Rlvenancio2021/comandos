@@ -17,8 +17,17 @@
 
 ### Comandos para instalação de pacotes e programas
 
-Virtual Box
+1. Virtual Box
  sudo apt-get install virtualbox
+
+1.2 Comando para aumentar a dimensão da tela
+sudo apt install build-essential dkms
+sudo apt-get install virtualbox-guest-additions-iso
+
+ - Ir no Menu Divices/Insert Guest additiions
+
+ - Abrir terminal e rodar o comando
+./autorun.sh
 
 ### Comandos para instalação do MySQL ###
 

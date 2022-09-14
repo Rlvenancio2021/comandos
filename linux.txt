@@ -47,6 +47,10 @@ sudo apt-get install virtualbox-guest-additions-iso
 
 2.3 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password'; - Comando para altar o usário root, faz com que solicite uma senha de autenticação. No 'password' é o local onde ESCREVEMOS a SENHA DESEJADA.
 
+2.4 CREATE USER <nome usuario>@'<acesso ex.: localhost>' IDENTIFIED BY '<senha>'; - Comando para criar um usuário no banco de dados MySQL.
+
+2.5 GRANT ALL PRIVILEGES ON <nome do banco de dados>.* TO <nome do usuário>@'%'; - Comando para liberar acesso ao usuário, no caso "*" acesso completo e "%" qualquer host.
+
 3 # Comando de execução #
 
 3.1 sudo mysql - Para executar o MySQL em linhas de código, caso a senho do usuário já estiver cadastrada trabalhar com os parametros -u<nome do usuário> -p ENTER para digitar a senha do usuário.
@@ -79,3 +83,10 @@ sudo apt-get install virtualbox-guest-additions-iso
 3. Rodar comando de criação da pasta venv: python3 -m venv ./venv #nome dado ao arquivo
 4. Rodar comando para ativar o ambiente virtual: surce <caminho da pasta (opcional)> venv/bin/activate
 5. Para desativar o ambiente virtual: deactivate
+
+
+## Gera chave ssh
+ Comando 
+```
+ssh -keygen -f ~/.ssh/<nome desejado> -t <OPICIONAL especificação da chave> -b 4096 //Verificar parametros no menu help "ssh-keygen --help"
+```

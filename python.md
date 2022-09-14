@@ -63,3 +63,24 @@ DATABASES = {
         'PORT': '',
     }
 }
+```
+
+4. Carregar dados no Banco de Dados com FRAMEWORK DJANGO
+
+Quando temos por exemplo um arquivo JSON com os dados para serem carregados em massa para o BD.
+```
+python manage.py loaddata <nome do arquivo com extensão>
+```
+
+## Instalação de pacotes
+
+É uma boa prática criar um arquivo chamado "requirement.txt" que lista todos os pacotes que foram instalados durante a construção do projeto. Para criar o arquivo basta usar o comando:
+```
+pip freeze > requirement.txt
+```
+Será criado um arquivo com a lista dos pacotes, interessante carregar o arquivo no GitHub.
+
+Para realizar a instalação dos pacotes listados no arquivo usar o comando:
+```
+pip install -r requirement.txt
+```

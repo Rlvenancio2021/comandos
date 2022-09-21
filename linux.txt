@@ -19,6 +19,106 @@ No Windowns usar o programa puTTY, é uma opção
 $ sudo apt-get install openssh-server
 ```
 
+### Usuário Administrador e Grupos
+
+- Verificação de grupos e usuários
+```
+$ cat /etc/group # Lista conteúdo do arquivo de grupos dos sistema
+$ cat /etc/sudoers # Contém as especificações para utilizar o comando "sudo"
+```
+Para ser admin é necessário estar nos grupos "admin" e "sudo"
+
+- Administração de usuários
+```
+$ sudo passwd <nome do usuário> # Atribui senha ao usuário existente
+```
+
+- Arquivo SSHD 
+É o portal de acesso ao sistema via SSH, guarda o log de todas as tentativas e acessos realizados no sistema
+
+-- Para permitir relizar login via usuário root é necessário alterar o arquivo sshd_config na linha **PermitRootLogin** descomentar 
+essa linha e trocar **prohibit-password** por **yes**, depois ou restart o sistema ou o servido "sshd". Para alteração necessário 
+utilizar editor de texto vim ou nano
+***Não é a melhor prática por questões de segurança***
+```
+$ cat /etc/ssh/sshd_config
+$ systemctl status sshd # Verifica status do serviço SSHD
+$ systemctl restart sshd
+```
+
+## Editor de Texto VIM e NANO
+
+
+
+
+## Comandos para o dia-a-dia
+
+ - Comando para listar conteúdo de um diretório
+```
+$ ls
+$ ls | more # lista o arquivos e permite correr a lista com "enter"
+$ ls p* # comando para listar arquivos iniciado com "p" apresenta tbm o seu conteúdo
+$ ls m?g* # comando para filtar o que tiver a 1 letra "m" e a 3 "g" as demais não importa
+$ ls arquivo[1-3].txt ou * # comando para listar um filtro de arquivos no exemplo de 1 ao 3 no padrão de nome arquivos1.txt
+$ ls -d */ # Lista apenas diretorios, necessário está dentro da pasta que deseja realizar a listagem
+$ ls */ # Lista o conteúdo de cada diretorio a partir do diretorio que estiver logado
+$ ls -R /<nome de um diretório>/ # Irá listar o conteúdo de todos os diretórios a partir do que estiver logado.
+```
+# variáveis do comando (exemplo de arquivo nomeado como arquivo1.txt, arquivo2.txt ...)
+	[1-3] - lista do 1 ao 3
+	[2,5] - lista o 2 e o 5
+	[^3-5] - não lista do 3 ao 5
+ - Essas variáveis podem ser utlizadas para excluir, copiar, filtrar arquivos entre outros, teste para saber!!
+
+- Comandos de busca de arquivos "find" é utilizado em conjunto com parâmetros, irá listar os arquivos e caminhos encontrados a 
+partir do diretório que estiver logado.
+```
+$ find -name <nome do arquivo, pode usar o inicio + * para busca>
+```
+
+- Comando para verificar menu de ajuda **--help** e/ou **man**
+```
+$ ls --help
+$ man ls
+```
+
+- Comandos para criar arquivos
+Cria arquivo vazio
+```
+touch <nome do arquivo com extensão>
+```
+Cria e escreve no arquivo
+```
+echo <texto do arquivo> > <nome do arquivo>
+```
+
+- Comando history, server para verificar o historico de comandos realizados por um determinado usuários, também permite o 
+reaproveitamento do comando passando para o sistema o número dele na lista
+```
+$ history
+$ !7 # 7 é no exemplo, o númedo do indice do comando que desejo reaproveitar
+$ !! # reaproveita o último comando
+$ !?dat? # verifica na lista se algum comando já realizado atente o parâmetro e o executa
+$ history | grep "Aula" # Irá listar todos os comandos que usou a palavra "Aula"
+$ history -c # limpa o historico de comandos
+```
+- Para alterar a variável de ambiente do comando history e configurar para exibir a data e hora que o comando foi executado
+```
+$ export HISTTIMEFORMAT="%c"
+```
+
+- Editando o comando HISTORY, necessáiro realizar por usuário
+```
+$ set +o history # desativa armazenamento
+$ set -o history # ativa armazenamento
+```
+
+O history armazena por padrão os 1.000 últimos comandos, para altera é necessário realizar alteraça dentro do arquivo **.bashrc** 
+de cada usuário, no parâmetro **HISTSIZE**.
+
+Para cria um arquivo com todos os comandos que foram executados pelo usuário logado, usar o comando ```$ history -w``` irá criar um 
+arquivo **.bash_history** na pasta do usuário com as informações listadas, é possível determinar o seu tamanho pelo parâmetro 
+**HISTFILESIZE** no arquivo **.bashrc**.
 
 
 ### Comandos para atualização do sistema ###

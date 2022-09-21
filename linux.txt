@@ -1,3 +1,26 @@
+## Comandos Servidor Linux
+
+- Comando para exibir os números de IP, o IP estará na propriedade "enp0s3" no "inet"
+```
+$ ip a
+```
+
+- Para acessar uma maquina virtual do via Linux/MacSO seguir da seguinte forma:
+```
+$ ssh <usuário da máquina>@<número de IP>
+
+# Máquina Virtual Pública AWS/Azure, baixar chave SSH extensão .pem
+$ ssh -i <nome da chave.pem> <usuário da máquina>@<númedo de IP>
+```
+No Windowns usar o programa puTTY, é uma opção
+
+- Comando para instalar serviço "OPEN SSH"
+```
+$ sudo apt-get install openssh-server
+```
+
+
+
 ### Comandos para atualização do sistema ###
 
 1. sudo apt update - Comando que lista todos os pacotes que precisam ser instalados

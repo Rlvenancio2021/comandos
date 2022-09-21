@@ -31,7 +31,7 @@ $ cat /etc/sudoers # Contém as especificações para utilizar o comando "sudo"
 ```
 Para ser admin é necessário estar nos grupos "admin" e "sudo"
 
-- Administração de usuários
+- **Administração de usuários**
 ```
 $ sudo passwd <nome do usuário> # Atribui senha ao usuário existente
 ```
@@ -47,6 +47,138 @@ utilizar um editor de texto VIM ou NANO.
 $ cat /etc/ssh/sshd_config
 $ systemctl status sshd # Verifica status do serviço SSHD
 $ systemctl restart sshd
+```
+
+**Gestão de Usuários**
+
+Esses comando funcionam também para o Desktop
+Comando "useradd" não cria pasta HOME
+- Comando para criar ou deletar usuário
+***Consultar usuários cadastrado no sistema***
+```
+$ cat /etc/passwd
+```
+
+***Cria usuários***
+Quando criamos o usuário, ao passar uma senha neste momento é necessário que estaja encripitada, caso contrário é melhor primeiro criar o usuário e depois criar a senha, para realiza a encripitação no mesmo comando de criação seguir conforme parâmetro "-p" abaixo
+```
+$ useradd <nome do usuário>
+$ useradd <nome do usuário> -m -c "nome completo do usuário" -s /bin/bash -e 22/09/2022
+	Parâmetros: (qualquer parâmetro pode ser alterado/incluido com uso do comando "usermod")
+	-m # Para criar pasta home
+	-c # Para incluir mensagem para o usuário, pode ser o nome completo por exemplo (-c "mensagem")
+	-s # Para informar qual a shell que o usuário irá logar, o mais usuál é o BASH (-s /bin/bash)
+	-e # Para determinar uma data limite de acesso (-e dd/mm/aaaa), quando não informado será necessário nova senha no momento do login
+	-p $(openssl passwd -password senha123)
+	-G <nome do grupo>
+```
+***Realiza alterações no usuário***
+```
+$ usermod <nome do usuário> <parâmetro que deseja alterar> # Exemplo: $ usermod guest -e 30/09/2022 # Comando para realizar alterações nos parâmetros de um usuário 
+
+$ passwd <nome do usuário> # Comando para criar ou alterar senha de usuário, pode ser usado com os parâmtros:
+	-e # podemos passar data para expirar a senha ou, se não informar a data será necessário uma nova senha nesse momento
+```
+***Exclui usuários***
+```
+$ userdel -f <nome do usuário> # -f é para forçar a exclusão
+	Parâmetro:
+	-f # Para forçar a exclusão
+	-r # Exclui o usuário e seus mail e diretórios
+```
+
+- Comando para criar ou alterar senha, serve para resetar senha de ususário
+```
+$ passwd <nome do usuário>
+```
+- Para os usuário novos é necessário informa a shell ao qual terá acesso, caso não informado não terá acesso as pastas do sistema, pode ser informada no momento da criação utilizando o parâmetro "-s" ou pelo comando
+Bash é a shell padrão
+```
+$ chsh -s /bin/bash <nome do usuário>
+```
+
+***Criar script de execução para criação de usuário***
+Criamos na raiz do sistema uma pasta chamado **scripts** e dentro dela um arquivo, no exemplo, de nome "**create_user.sh**", importante ser com a extensão ".sh" e na primeira linha do arquivo o comando ```#!/bin/bash``` e no corpo do arquivo escrevemos os comandos da 
+mesma maneira que seria escrito no terminal
+Necessário conceder permissão de execução para o arquivo, com o comando, poderá observar que o arquivo irá trocar de cor
+```
+$ chmod +x <nome do arquivo>
+```
+Para executar o arquivo:
+```
+./<nome do arquivo>
+```
+
+***Grupo de usuários***
+
+Para consultar os grupos existente
+```
+cat /etc/group
+```
+- Comando para adicionar o usuário em um grupo existente
+```
+$ usermod -g <nome do grupo> <nome do usuário>
+	  -G <nome do grupo>,<nome do grupo> <nome do usuário> 
+```
+Usando -g ou -G o usuário é migrado de grupo, ou seja, sai dos grupos que já estavam e passa para o grupo indicado no comando, para 
+manter no mesmo grupos anteriores é necessário indicar os grupos que ela deve pertencer
+Agora para excluir de apenas um grupo o comando é
+```
+gpasswd -d <nome do usuário> <nome do grupo que será removido>
+```
+
+- Criar Grupo
+Grupos servem como uma forma de criar permissão de acesso, assim todos os usuários constante no grupo herdam as permissões que o grupo tem, é uma forma mais fácil de gerenciar permissões.
+Comando para alterar os grupos dos usuário ```usermod -G ou -g``` é necessário **listar todos os grupos que o usuário deva pertencer**, 
+comando para excluir um grupo do usuário é o ```gpasswd -d```.
+```
+groupadd <nome do grupo>
+groupdel <nome do grupo>
+usermod -G <nome do grupo> <nome do usuário>
+gpasswd -d <nome do usuário> <nome do grupo que será removido>
+```
+
+### Permissões
+
+Cada "elemento" dentro do linux quando observador de forma detalhada ```ls -l```  possuí uns caracteres iniciais que podem iniciar com **d** - 
+quando se 
+trata de um diretório, ou "-" - quando se trata de um arquivo, os demais caratéres são divididos em 3 colunas (dividido em grupos de 3 
+caracteres) que diz respeito sobre as permissões de **"Dono", "Grupo","Outros"**, respectivamente, onde:
+ - r read/leitura
+ - w write/gravação
+ - x execute/execução
+Os valores de leitura, gravação e execução possuem um valor que os representa de forma numérica sendo:
+ - Leitura(R) => 4
+ - Gravação(W) => 2
+ - Execução(X) => 1
+ - Nenhum => 0
+A utilização desses valores é por meio de soma, exemplo para dar permissão de leitura/gravação/execução informa 
+o valor "7"
+
+A representação de uma pasta e/ou diretório no Linux é da seguinte forma:
+permissões	qtde arquivos	user dono	grupo	tamanho		data		diretório/arquivo
+drwxr-xr-x	1		root     	root    7 		set 23 14:42 	adm
+
+root é o usuário super usuário do sistema. Podemos altera o dono e/ou grupo de um arquivo/diretório com o comando ```chown``` change owner
+```
+chown <nome do novo usuário dono>:<nome do grupo> /adm/ #Caminho do diretório/arquivo no caso /adm/
+```
+Com essa ação a nova representação fica:
+	DE
+	drwxr-xr-x   2 root root       4096 set 23 15:10 adm
+	PARA
+	drwxr-xr-x   2 venancio GRP_ADM       4096 set 23 15:10 adm
+Assim, neste exemplo, o usuário **venancio** dono do diretório **adm**, pode ler/gravar/exeturar ```rwx```, e os usuário pertecentes ao grupo **GRP_ADM** podem ler/executar ```r_x``` e os outros podem ler/executar também ```r_x```
+
+Comando para modificar permissões do grupo ```chmod``` na sequência informamos os valores de permissão para o 
+"dono", "grupo" e "outros", respectivamente. Pode alterar as permissões tanto de arquivos como de diretórios
+```
+chmod 750 /adm/ # No exemplo o diretório foi o /adm/ criado anteriormente para esse testeA
+```
+Caso crie um arquivo de execução e queira das permissão de execução **apenas para o dono** do arquivo, o comando é
+```
+chomd +x <nome do arquivo>
+chomd -x <nome do arquivo>
 ```
 
 ## Editor de Texto VIM e NANO

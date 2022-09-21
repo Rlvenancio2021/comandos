@@ -1,3 +1,5 @@
+# Comandos do Terminal Linux
+
 ## Comandos Servidor Linux
 
 - Comando para exibir os números de IP, o IP estará na propriedade "enp0s3" no "inet"
@@ -8,18 +10,19 @@ $ ip a
 - Para acessar uma maquina virtual do via Linux/MacSO seguir da seguinte forma:
 ```
 $ ssh <usuário da máquina>@<número de IP>
-
-# Máquina Virtual Pública AWS/Azure, baixar chave SSH extensão .pem
+```
+-  Máquina Virtual Pública AWS/Azure, baixar chave SSH extensão .pem
+```
 $ ssh -i <nome da chave.pem> <usuário da máquina>@<númedo de IP>
 ```
-No Windowns usar o programa puTTY, é uma opção
+<sub>No Windowns uma das opções é usar o programa puTTY (necessário baixar e instalar).</sub>
 
 - Comando para instalar serviço "OPEN SSH"
 ```
 $ sudo apt-get install openssh-server
 ```
 
-### Usuário Administrador e Grupos
+## Usuário Administrador e Grupos
 
 - Verificação de grupos e usuários
 ```
@@ -37,8 +40,8 @@ $ sudo passwd <nome do usuário> # Atribui senha ao usuário existente
 É o portal de acesso ao sistema via SSH, guarda o log de todas as tentativas e acessos realizados no sistema
 
 -- Para permitir relizar login via usuário root é necessário alterar o arquivo sshd_config na linha **PermitRootLogin** descomentar 
-essa linha e trocar **prohibit-password** por **yes**, depois ou restart o sistema ou o servido "sshd". Para alteração necessário 
-utilizar editor de texto vim ou nano
+essa linha e trocar **prohibit-password** por **yes**, depois restart o sistema ou o serviço "sshd". Para realizar a alteração será necessário 
+utilizar um editor de texto VIM ou NANO.
 ***Não é a melhor prática por questões de segurança***
 ```
 $ cat /etc/ssh/sshd_config
@@ -47,9 +50,12 @@ $ systemctl restart sshd
 ```
 
 ## Editor de Texto VIM e NANO
-
-
-
+**Vim**
+Para entrar no modo de inserção uma das alternativas é aperta a leta "i", quando finalizar aperta "esc" os comandos abaixo
+```
+$ :wq # Salva e fecha o arquivo
+$ :q! # Fecha sem salvar
+```
 
 ## Comandos para o dia-a-dia
 
@@ -64,10 +70,16 @@ $ ls -d */ # Lista apenas diretorios, necessário está dentro da pasta que dese
 $ ls */ # Lista o conteúdo de cada diretorio a partir do diretorio que estiver logado
 $ ls -R /<nome de um diretório>/ # Irá listar o conteúdo de todos os diretórios a partir do que estiver logado.
 ```
-# variáveis do comando (exemplo de arquivo nomeado como arquivo1.txt, arquivo2.txt ...)
+### variáveis do comando ls
+<sub>
+	(exemplo de arquivo nomeado como arquivo1.txt, arquivo2.txt ...)
+	conforme exemplo acima os parâmetros abaixo são usados para
+</sub>
+
 	[1-3] - lista do 1 ao 3
 	[2,5] - lista o 2 e o 5
 	[^3-5] - não lista do 3 ao 5
+	
  - Essas variáveis podem ser utlizadas para excluir, copiar, filtrar arquivos entre outros, teste para saber!!
 
 - Comandos de busca de arquivos "find" é utilizado em conjunto com parâmetros, irá listar os arquivos e caminhos encontrados a 

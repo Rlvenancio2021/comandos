@@ -277,6 +277,52 @@ arquivo **.bash_history** na pasta do usuário com as informações listadas, é
 
 4. sudo apt install gcc make perl curl - Instalação de pacote padr
 
+### Demais comandos interessantes ###
+```
+- Comando para realizar Downloads ```wget```
+- Comando para descompactar arquivo ```unzip``` ou ```unrar```
+
+
+## Gerenciamento de Pacotes
+
+* Gerenciador de pacote do Debian / Ubuntu
+- **apt-get** maiores detalhes ```apt-get --help```
+- **apt** - Mais amigável ao usuário, maiores detalhes ```apt --help```
+
+* Gerenciador de pacote do Red Hat / Fedora / CentOS
+- **yum**
+- **dnf**
+
+**Alguns exemplos de comandos**
+```
+$ apt list # Lista todos os pacotes disponíveis para baixar
+$ apt list --installed # Lista todos os pacotes instalados na máquina
+$ apt list --upgradeable # Lista se existem versões a serem atualizadas dos pacotes já instalados.
+$ apt search <nome do pacote> # Busca de pacotes no gerenciador
+$ apt remove <nome do pacote> # Para remover pacotes
+	-y # Parâmetro para sem pedir confirmação, ideal para uso dentro de "script"
+$ apt update
+$ apt upgrade
+```
+**Curiosidade** Com o uso da virtualização pelo Oracle Virtual Box, é possível criar uma 
+scrinshots antes de realização de qualquer modificação, exemplo um script de configuração, 
+uma atualização do sistema, isso irá funcionar como um backup, caso ocorra alguma 
+problemas, basta restaurar a versão desejada.
+
+
+**Adicionar repositório de terceiros**
+Comando para verificar os links de repositórios do Ubuntu, caso queira adicionar repositório de terceiros, basta incluir o link aqui
+```
+$ apt edit-sources
+```
+
+**Instalação de programas .deb**
+- Pode utilizar o **apt** para instalação ```apt install ./<nome do arquivo com 
+extensão>```, necessário navegar até a pasta onde o arquivo está guardado, para 
+para baixar o arquivo utiliza-se o comando ```wget <endereço para download>```
+- Comando para instalação de arquivos ```dpkg -i <nome do arquivo>```
+
+
 ## Teclas de atalho no terminal
 
  - ctrl + shift + C //Copiar

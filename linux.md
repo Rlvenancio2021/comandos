@@ -495,6 +495,30 @@ Para o site funcionar é necessário que estejam todos os arquivo no caminho pad
 
 Para o máquina local é necessário verificar a abertura do **Fireware no ubtundu pacote ufw** e liberar as portas **80 para http:\\** e **443 para https:\\**
 
+
+## Servidor de Banco de Dados
+
+Será instalado no servidor o SGBD MySQL
+```
+apt install mysql-server-8.0
+```
+
+Não é necessário informar a versão do sistema que deseja baixar, assim será instalada a versão mais atualizada.
+
+Desta forma o usuário padrão para acessar o Banco de Dados será o root pelo comando ```mysql -uroot -p```
+
+Para criar um novo usuário será necessário seguir os comandos abaixo
+```
+CREATE USER <nome usuario>@'<acesso ex.: localhost>' IDENTIFIED BY '<senha>';
+
+GRANT ALL PRIVILEGES ON <nome do banco de dados>.* TO <nome do usuário>@'%';
+```
+
+Depois de logar no "MySQL"
+- Create User - para criar novo usuário no MySQL
+- Grant all Privileges - para dar privilegios ao usuário
+
+
 ## Teclas de atalho no terminal
 
  - ctrl + shift + C //Copiar

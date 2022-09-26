@@ -278,10 +278,10 @@ arquivo **.bash_history** na pasta do usuário com as informações listadas, é
 4. sudo apt install gcc make perl curl - Instalação de pacote padr
 
 ### Demais comandos interessantes ###
-```
+
 - Comando para realizar Downloads ```wget```
 - Comando para descompactar arquivo ```unzip``` ou ```unrar```
-
+- Comando para mostrar discos ```lsblk -o +ROTA,DISC-GRAN```
 
 ## Gerenciamento de Pacotes
 
@@ -322,6 +322,56 @@ extensão>```, necessário navegar até a pasta onde o arquivo está guardado, p
 para baixar o arquivo utiliza-se o comando ```wget <endereço para download>```
 - Comando para instalação de arquivos ```dpkg -i <nome do arquivo>```
 
+## Gerenciamento de Disco
+
+Comando para lista os disco ```lsblk```, os disco iniciam com a letra **sd** e são 
+complementados com as letras **a, b, c, ...** para cada disco adicional que a máquina 
+possuir caso tenha uma partição será respresentado com um número ex. **sda1, sda2, 
+...**, loop são discos virtuais criado por algum pacote instalado.
+Outra forma de listar os disco é pelo comando ```fdisk -l```
+
+- Comando para adicionar novo disco
+```fdisk /dev/sdb``` Na tela que irá seguir, caso tenha alguma dúvida basta aperta "m"
+Opções para este teste
+```
+n # Para adicionar novo disco
+p # Para disco primário (extended para quando for adicionar e particionar o disco)
+1 # Para indicar apenas uma parte
+	Por fim escolher o setor, no caso por default já ira trazer os valores iniciais e finais que contempla o disco inteiro
+w # Para salvar as alterações e sair
+```
+- Formatar o disco adicionado
+Usar o comando ```mkfs```
+```
+mkfs.<formado do disco> /dev/<disco desejado>
+mkfs.ext4 /dev/sdb
+```
+- Montar o Disco, para usar no sistema, usar comando 
+```
+mount /dev/<disco desejado> /mnt/<diretório desejado>
+umount /dev/<disco desejado>
+```
+Neste caso, podemos montar o disco no diretório que desejarmos, o usual é dentro do diretório **mnt** porém não é uma regra.
+Esse procedimento é necessário executar sempre que a máquina for reiniciada.
+
+- Montar Disco de forma permanente
+Necessário editar o arquivo **fstab** dentro do diretório "etc"
+```
+nano /etc/fstab
+
+ # Incluir a linha
+
+/dev/<disco desejado> /<caminho do diretório onde o disco foi montado> ext4 defaults 0 0
+```
+"ext4" representa o sistema de arquivos que o disco em questão foi formatado
+"0 0" é um padrão para uso em backups, **pesquisar sobre o tema** 
+
+
+### Acesso a Disco Externo
+Para realizar a leitura e gravação o disco precisa esta no formando **ExFAT**
+- 1 passo = Montar um diretório na pasta mnt
+- 2 passo = Rodar o comando de montagem de disco ```mount /dev/sdb1 /mnt/hdexterno``` neste exemplo usando a partição 1 do disco b e usando a pasta hdexterno para acesso ao disco
+- 3 passo = Para desmontar o caminha para desplugar o disco externo ```umount /dev/sd1```
 
 ## Teclas de atalho no terminal
 

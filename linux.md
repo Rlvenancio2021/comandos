@@ -470,6 +470,31 @@ Instalar o pacote samba ```apt install samba```
 		Logar como convidado ou usuário cadastrado no servidor
 
 
+## Servidor Web
+
+Para realizar teste se um servidor esta conectato ```ping <endereço web www....>```
+
+**Instalando o Aphace2**
+Caso apresente erro, necessário verificar se o **nginx** não está rodando usando a mesma porta, neste caso, pode-se altera a porta do apache ou encerrar o **nginx**
+
+Altera porta do nginx no caminho ```/etc/nginx/sites-avaliable/``` arquivo  ```default```
+Ou rodar o comando ```systemctl stop nginx```
+
+Verificar a melhor opção, para o caso de está utilizando o Nginx em alguma aplicação o melhor seria altera a porta de conexão
+
+```
+apt install apache2
+systemctl status apache2
+```
+Se estiver ok ativdo pode acessar a página inicial colocando o IP no navegador de internet
+O caminho no máquina para encontrar o html que exibe na página é **/var/www/html/** neste caminho está o HTML tanto do Apache quando do Nginx se ambos estiverem instalados.
+
+Em servidor ubuntu virtual (Azure AWS) para tornar público é necessário configurar o serviço **HTTP**
+
+Para o site funcionar é necessário que estejam todos os arquivo no caminho padrão da pasta HTML
+
+Para o máquina local é necessário verificar a abertura do **Fireware no ubtundu pacote ufw** e liberar as portas **80 para http:\\** e **443 para https:\\**
+
 ## Teclas de atalho no terminal
 
  - ctrl + shift + C //Copiar

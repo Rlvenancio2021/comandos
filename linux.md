@@ -373,6 +373,61 @@ Para realizar a leitura e gravação o disco precisa esta no formando **ExFAT**
 - 2 passo = Rodar o comando de montagem de disco ```mount /dev/sdb1 /mnt/hdexterno``` neste exemplo usando a partição 1 do disco b e usando a pasta hdexterno para acesso ao disco
 - 3 passo = Para desmontar o caminha para desplugar o disco externo ```umount /dev/sd1```
 
+
+## Manipulação de Arquivos
+
+Comando para realizar cópia de arquivos
+
+```
+cp # Copiar
+mv # Mover
+```
+Para mover pastas é necessário fazer pasta por pasta (No Ubuntu, necessário verificar nas demais distribuições)
+
+```
+cp <endereço e nome do arquivo - ORIGEM> <endereço - DESTINO> 
+ # Ex.:
+cp /home/usuario/arquivo.txt /disk2/ # ou
+cp arquivo.txt /disk2/ # ou
+cp /home/usuario/arquivo.txt ./
+cp ./arquivo.txt /disk2
+	# Parâmetros
+	-i # Interativo pede confirmação caso tenha arquivos com o mesmo nome
+	-r # Copia inclusive diterórios, suas pastas e arquivos dentro de cada pasta
+	-v # Verboso assim é mais transparente o que está acontecendo, indicado o uso sempre
+```
+Indicar o endereço absoluto do arquivo depende da pasta em que estiver logado
+Outras variações que pode ser utilizada
+```
+cp /home/usuario/*.txt /disk2 # Copia todos com extensão .txt
+cp /home/usuario/arquivo1.txt /disk2/arquivo3.txt # Podemos alterar o nome do arquivo no destino
+```
+Podemos utilzar o comando **mv** para renomear arquivos
+```
+mv arquivofinal.txt arquivo_final.txt
+```
+
+**Iniciando, Visualizando e Encerrando processos**
+
+- Visualizar
+```
+$ ps
+	# Parâmetro
+	a # mostra o processo de todos os usuários
+	u # fornece o nome do usuário e a hora que iniciou o processo
+	x # mostra os processos executados fora do console
+```
+- Encerrar
+```
+kill <número PID>
+killall chrome
+```
+O número do PID pode ser visualizado pelo comando ps aux
+O chrome é uma aplicação que usa muitos processos desta forma é mais fácil ir pelo nome
+
+No **servidor** caso não apareça o númedo do PID usar o comando ```who -a``` é o número antes do IP, depois executa o comando ```kill <PID>``` com isso o usuário será derrubado e caso seja alguém estranho o idial é excluir da base
+O comando **who -a** server para demonstrar quem está logado no servidor
+
 ## Teclas de atalho no terminal
 
  - ctrl + shift + C //Copiar

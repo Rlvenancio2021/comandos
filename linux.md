@@ -428,6 +428,48 @@ O chrome é uma aplicação que usa muitos processos desta forma é mais fácil 
 No **servidor** caso não apareça o númedo do PID usar o comando ```who -a``` é o número antes do IP, depois executa o comando ```kill <PID>``` com isso o usuário será derrubado e caso seja alguém estranho o idial é excluir da base
 O comando **who -a** server para demonstrar quem está logado no servidor
 
+
+## Servidor Linux
+
+São 3 principais tipos **Servidor de Arquivo, Web, Banco de Dados**
+
+
+### Servidor de Arquivos
+
+O Windows para realizar o compartilhamento de arquivos entre as máquinas e servidores utiliza o protocolo de serviço **SMB**, para usar no linux a aplicação que utilizamos é **SAMBA**
+site oficial samba.org
+
+SAMBA é considerado um serviço que roda em segundo plano, no linux esse tipo de serviço é conhecido como **daemon**. Quando for reinicar um serviço desse tipo o nome sempre irá finalizar com a letra **d** utilizando o "systemctl"
+
+Instalar o pacote samba ```apt install samba```
+É interessante separa o disco do sistema operacional dos disco de compartilhamento, assim se o de compartilhamento ficar lento por causa de muitos acessos, não afeta o sistema operacional
+ 1. Instalar o SAMBA
+ 2. Criar a pasta que será compartilhada (usual no servidor, criar no diretório raiz em um disco separado, seguindo o exemplo "disk2"
+ 2.1. Configurar o nível de permissões de acesso a pasta
+ 3. Configurar o servidor de arquivo, no caminho ```/etc/samba/smb.conf```
+ 4. No final do arquivo incluir a seguinte configuração
+```
+[publica] # Incluir o nome do compartilhamento, não precisa ser o mesmo nome da pasta
+
+    path = /disk2/publica
+    writable = yes	# indica que a pasta está liberada para gravação
+    guest ok = yes	# qualquer pessoa pode acessar a pasta
+    guest only = yes	# todos que acessarem são convidados.
+```
+ 5. Reiniciar o serviço SAMBA ```systemctl restart smbd```
+ 6. Para o serviço inicial automáticamente ao ligar o servidor ```systemctl enable smbd```
+ 7. Conectar ao servidor via sistema operacional
+	- MacOS
+		command + k / colocar o númedo do ip / conectar no exemplo como convidado
+	- Windows
+		Abrir o explocador de arquivos e no caminho de acesso colocar o ip da máquina "\\xxxxxxxxxx\<nome do compartilhamento no exemplo publica>
+		Logar com um usuário cadastrado no servidor
+	- Linux Ubuntu Desktop
+		Abrir o gerenciador de arquivos
+		No na opção "Outros Locais" no campo "Conectar a servidor" escrever ```smb://<endereço IP do servidor>```
+		Logar como convidado ou usuário cadastrado no servidor
+
+
 ## Teclas de atalho no terminal
 
  - ctrl + shift + C //Copiar

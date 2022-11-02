@@ -21,6 +21,10 @@ $ ssh -i <nome da chave.pem> <usuário da máquina>@<númedo de IP>
 ```
 $ sudo apt-get install openssh-server
 ```
+- Comando para **alterar o nome da máquina** "@ubuntu"
+```
+$ hostnamectl hostname <NOME DESEJADO>
+```
 
 ## Usuário Administrador e Grupos
 
@@ -231,10 +235,12 @@ Cria arquivo vazio
 ```
 touch <nome do arquivo com extensão>
 ```
-Cria e escreve no arquivo
+Cria, escreve ou adiciona texto no arquivo
 ```
-echo <texto do arquivo> > <nome do arquivo>
+$ echo <texto a escrever no arquivo> > <nome do arquivo>
+$ echo <texto a escrever no arquivo> >> <nome do arquivo>
 ```
+*Obs* ">" escrever por cima, ">>" adiciona na última linha
 
 - Comando history, server para verificar o historico de comandos realizados por um determinado usuários, também permite o 
 reaproveitamento do comando passando para o sistema o número dele na lista

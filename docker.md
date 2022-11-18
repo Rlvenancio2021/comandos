@@ -160,3 +160,35 @@ Criar servidor próprio
 ```
 $ 
 ```
+
+## Criando uma imagem Docker
+
+1. Para melhor organização, criar os diretórios necessários para o projeto
+- Neste exemplo ~/Kubernetes/app-2-kubernetes/dockerfile
+
+2. Criar a Aplicação, Site, Banco de Dados, etc...
+
+3. Criar a imagem do conteiner para rodar o aplicativo
+ - Criar arquivo dockerfile
+ - Consultar documentação da imagem que deseja criar no hub.docker.com, para verifciar as expecificações necessárias.
+
+4. Dendro do diretório que está **gravado o dockerfile** executar o comando
+```
+$ docker bluid . -t <NOME DO USUÁRIO DO HUB.DOCKER>/<NOME DA APLICAÇÃO>:<TAG>
+```
+
+5. Consultar se a imagem foi gerada com sucesso
+```
+$ docker images
+```
+
+Para enviar a imagem para o repositório oficial
+
+6. Logar do Docker via CLI
+```
+$ docker login
+```
+
+7. Realizar Upload da imagem para o repositório
+```
+$ docker push <NOME DA IMAGEM CONFORME ITEM 4 incluindo a TAG> 

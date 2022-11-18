@@ -523,6 +523,40 @@ $ docker push <USUÁRIO>/my-go-app:1.0
 $ docker pull <USUÁRIO>/my-go-app:1.0
 ```
 
+## Criando uma imagem Docker para cluster Kubernetes
+
+1. Para melhor organização, criar os diretórios necessários para o projeto
+- Neste exemplo ~/Kubernetes/app-2-kubernetes/dockerfile
+
+2. Criar a Aplicação, Site, Banco de Dados, etc...
+
+3. Criar a imagem do conteiner para rodar o aplicativo
+ - Criar arquivo dockerfile
+ - Consultar documentação da imagem que deseja criar no hub.docker.com, para verifciar as expecificações necessárias.
+
+4. Dendro do diretório que está **gravado o dockerfile** executar o comando
+```
+$ docker bluid . -t <NOME DO USUÁRIO DO HUB.DOCKER>/<NOME DA APLICAÇÃO>:<TAG>
+```
+
+5. Consultar se a imagem foi gerada com sucesso
+```
+$ docker images
+```
+
+Para enviar a imagem para o repositório oficial
+
+6. Logar do Docker via CLI
+```
+$ docker login
+```
+
+7. Realizar Upload da imagem para o repositório
+```
+$ docker push <NOME DA IMAGEM CONFORME ITEM 4 incluindo a TAG>
+```
+
+
 ## Criando um servidor de imagens
 
 Para isso podemos usar um servidor específico só para este papel. A ideia é criar um servidor de imagens privado, é interessante o uso pensando no mundo corporativo, onde não seria interessante armazenar isso fora do ambiente da empresa.

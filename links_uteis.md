@@ -10,3 +10,6 @@ https://devhints.io
 
 https://multipass.run
 // Virtualiza máquina Linux em sistema Linux, MacOS e Windowns
+
+https://markdownguide.org/basic-syntax/
+// Edição de arquivo em .md

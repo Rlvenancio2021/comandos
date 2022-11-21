@@ -851,3 +851,64 @@ O serviço a ser utilizado é o **filestore** no GCP
 A região e rede tem que ser a mesma que o cluster foi criado
 Pegar o número de IP gerado para acesso ao disco.
 **Arquivo de referência "http-nfs.yml".**
+
+
+## Gerenciamento de Deploy e Roolback em Clusters Kubernetes
+
+Utilizando o comando **remove** mata todo a aplicação, se estiver em produção, isso fará com que fique fora do ar até que faça um novo **apply**.
+
+
+Na procedimento padrão - para nova versão que será carregada, o sistema irá nó por nó, derrubar a versão que estiver rodando e carregar a nova versão, até que percorra todos os nós, assim, garantindo que a aplicação estaja no ar durante o processo.
+
+Neste caso a **prática é informar no nome do arquivo .yml a versão dele**, assim com o comando **rollout history** será possível identificar na lista, qual o deploy desejado.
+
+- Comando para criar um deploy criando um histórico
+```
+$ kubectl apply -f <NOME DO ARQUIVO .yml> --record
+```
+
+- Comando para voltar uma versão
+```
+$ kubectl rollout undo deployment httpd
+$ kubectl rollout undo deployment httpd --to-revision=<NÚMERO DESEJADO>
+```
+***Obs*** para verificar os número de indice do **Revision** dor o comando para verificar o histórico
+
+- Comando para verificar o histórico
+```
+$ kubectl rollout history deployment <NOME>
+```
+
+## Senhas dentro de um Cluster
+
+**Secrets** é um objeto que contém uma pequena quantidade de informação sensível, como senhas, tokens ou chaves. Este tipo de informação poderia, em outras circunstâncias, ser colocada diretamente em uma configuração de Pod ou em uma imagem de contêiner. O uso de Secrets evita que você tenha de incluir dados confidenciais no seu código.
+Podem ser criados de forma idenpendente dos Pods que os consomem. Isto reduz o risco de que o Secret e seus dados sejam expostos durante o processo de criação, visualização e edição ou atualização de Pods.
+
+***Exemplo***
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+data:
+  ROOT_PASSWORD: Senha123
+```
+*OBS* 
+ - O tipo **Opaque** significa que o usuário estará passando os valores.
+ - Após "apply" deste arquivo, o mesmo pode ser excluído (ou armazenado em local segura, **não subir no GitHub**), desta forma não será exposto para o usuário. Para o desenvolvedor será passado a **chave** que ele precisa para realiza o acesso, no exemplo acima **ROOT_PASSWORD**, para utilizar a senha será necessário chamar pelo nome do sercret, neste caso **my-secret**.
+
+ A mudança na utilização do secret é que no **".yml" do Banco de dados, nas variáveis de ambiente (ENV)** será apresentada da seguinte forma.
+```
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: ROOT_PASSWORD
+
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: my-secret
+                  key: MYSQL_DATABASE
+```

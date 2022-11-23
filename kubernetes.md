@@ -912,3 +912,17 @@ data:
                   name: my-secret
                   key: MYSQL_DATABASE
 ```
+
+- Comandos para secrets
+```
+$ kubectl get secrets                                           # Exibe os secrets criado
+$ kubectl describe secrets <NOME DO SECRET>                     # Exibe a descrição do secret criado
+$ kubectl edit secret <NOME DO SECRET>                          # Edita o secret criado
+$ kubectl get secret <NOME DO SECRET> -o yaml                   # Exibe o conteúdo do secret criado
+$ kubectl get secret <NOME DO SECRET> -o jsonpath='{.data}'     # Exibe o conteúdo do secret criado
+```
+
+- Para verificar os informações criadas via "Variável de Ambiente", após acesso o Pod desejado, rodar o comando.
+```
+$ printenv
+```

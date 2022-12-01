@@ -926,3 +926,44 @@ $ kubectl get secret <NOME DO SECRET> -o jsonpath='{.data}'     # Exibe o conte�
 ```
 $ printenv
 ```
+
+
+# Google Cloud Deploy
+
+site: https://cloud.google.com/deploy/docs/deploy-app-gke
+
+Entregue continuamente ao Google Kubernetes Engine e ao Anthos.
+
+Usado para situações que o **Cloud Build não atende**
+
+**Faz a entrega da applicação no Kubernetes**
+
+
+Ferramentas **Skaffold**
+site: https://skaffold.dev/docs/
+
+Ferramenta de linha de comando que facilita o processo de CI/CD dos conteiner, pode ser usado em núvem ou local
+
+Tendo o gcloud instaldo, rodar o comando para instalar
+```
+$ gcloud components install skaffold
+```
+### Uso
+
+- Entrar no console do GCP pesquisar por **Cloud Deploy** e ativar a API caso necessário
+
+Adiciona o papel clouddeploy.jobRunner, para adicionar a permissão para uso do **Cloud Deploy**
+```
+$ gcloud projects add-iam-policy-binding PROJECT_ID \
+    --member=serviceAccount:$(gcloud projects describe PROJECT_ID \
+    --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
+    --role="roles/clouddeploy.jobRunner"
+```
+
+Adiciona o papel clouddeploy.jobRunner, para adicionar a permissão para uso do **Kubernetes**
+```
+$ gcloud projects add-iam-policy-binding PROJECT_ID \
+    --member=serviceAccount:$(gcloud projects describe PROJECT_ID \
+    --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
+    --role="roles/container.developer"
+```

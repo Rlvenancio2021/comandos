@@ -930,6 +930,11 @@ $ printenv
 
 # Google Cloud Deploy
 
+É uma opção a utilização de ferramentas de CI/CD, isso ajudará a ter um controle melhor sobre o cluster e gerenciamento do Deploy.
+Utilizando a ferramenta Skaffold por trás. Assim tem-se a garantia de que aquilo que foi homologado será exatamente o que será entregue no ambiente de produção.
+
+**É um serviço gerenciado que automatiza a entrega de aplicações em uma séria de ambientes.**
+
 site: https://cloud.google.com/deploy/docs/deploy-app-gke
 
 Entregue continuamente ao Google Kubernetes Engine e ao Anthos.
@@ -943,6 +948,10 @@ Ferramentas **Skaffold**
 site: https://skaffold.dev/docs/
 
 Ferramenta de linha de comando que facilita o processo de CI/CD dos conteiner, pode ser usado em núvem ou local
+
+É responsável pela execução e implantação dos artefatos do cluster, identificando o **manifesto do Kubernetes** a ser usado para implantar a aplicação em questão.
+O **skaffold lida com o fluxo de trabalho** para criar, enviar e implantar sua aplicação, **fornecendo blocos de construção para criar pipelines de CI/CD**.
+Skaffold é uma **ferramento de linha de comando** que facilita o desenvolvimento contínuo de **aplicativos nativos do kubernetes**.
 
 Tendo o gcloud instaldo, rodar o comando para instalar
 ```
@@ -967,3 +976,55 @@ $ gcloud projects add-iam-policy-binding PROJECT_ID \
     --format="value(projectNumber)")-compute@developer.gserviceaccount.com \
     --role="roles/container.developer"
 ```
+
+**Cria um cluster**
+```
+$ gcloud container clusters create-auto quickstart-cluster-qsdev --project=authentic-door-368219 --region=us-central1 && gcloud container clusters create-auto quickstart-cluster-qsprod --project=authentic-door-368219 --region=us-central1
+```
+
+**Excluir um cluster e pipeline**
+```
+$ gcloud container clusters delete quickstart-cluster-qsdev --region=us-central1 --project=PROJECT_ID
+$ gcloud container clusters delete quickstart-cluster-qsprod --region=us-central1 --project=PROJECT_ID
+$ gcloud deploy delivery-pipelines delete my-gke-demo-app-1 --force --region=us-central1 --project=PROJECT_ID
+```
+
+
+Conforme a documentação, é necessário a criação de um diretório.
+```
+$ mkdir deploy-gke-quickstart
+$ cd deploy-gke-quickstart
+```
+
+Criar arquivo **skaffold.yaml**
+```
+apiVersion: skaffold/v2beta16
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - k8s-*
+```
+
+Verificar na documentação a criação dos arquivos necessários para o deploy são eles:
+- clouddeploy.yaml
+- k8s-pod.yaml
+- skaffold.yaml
+
+Após a criaçãod dos arquivos, executar o comando
+```
+$ gcloud deploy apply --file clouddeploy.yaml --region=us-central1 --<PROJECT_ID>
+```
+
+Após seguir todos os passos, é possível realizar alterações na aplicação e iniciar o processo de alteração via comando:
+```
+$ gcloud deploy releases create test-release-001 \
+  --project=<PROJECT_ID> \
+  --region=us-central1 \
+  --delivery-pipeline=my-gke-demo-app-1 \
+  --images=my-app-image=k8s.gcr.io/echoserver:1.4
+```
+
+Para verificar o status, entrar em **Cloud Deploy** e clicar no pipeline desejado. Para **subir** a aplicação para o **Ambiente de Produção**, após selecionar o pipeline desejado, na página que irá abrir será apresentada dois icones, um de Dev outro de Prod (conforme especificado na criação do projeto), neste ponto, clicar em **Promover** no icone de Dev.
+
+Existe a possibilidade de criar um procedimento de aprovação do Delivery, assim que alguém aprovar o delivery para Produção acontecerá de forma transparente.

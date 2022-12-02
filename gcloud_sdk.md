@@ -106,3 +106,11 @@ Após carregar os dados para o Source, ir para o Cloud Build em **Gatilhos** par
 ```
 $ git push --all google
 ```
+
+## Gatilhos ou Triggers
+
+Um recurso para **Gerenciar Repositórios**, é uma automação para executar processo a partir de uma ação pré-determinada.
+
+É possível utilizar repositórios externos ao Google, exemplo GitHub entre outros.
+
+

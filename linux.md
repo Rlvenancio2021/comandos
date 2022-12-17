@@ -292,6 +292,7 @@ arquivo **.bash_history** na pasta do usuário com as informações listadas, é
 ## Gerenciamento de Pacotes
 
 * Gerenciador de pacote do Debian / Ubuntu
+site: https://pt.wikipedia.org/wiki/Ferramenta_de_pacote_avançada
 - **apt-get** maiores detalhes ```apt-get --help```
 - **apt** - Mais amigável ao usuário, maiores detalhes ```apt --help```
 

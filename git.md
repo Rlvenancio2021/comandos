@@ -1,5 +1,18 @@
 # CLI GIT
 
+## Índice
+
+- [Configurações globais do 'GIT'](#configurações-globais-do-git)
+- [Criando vinculo a diretório GITHUB](#criando-vinculo-a-diretório-github)
+- [Comandos para consulta de comite](#comandos-para-consulta-de-comite)
+- [Tags e Releases](#tags-e-releases)
+- [Criar repositório para controle de alterações](#criar-repositório-para-controle-de-alterações)
+- [Comandos do dia-a-dia](#comandos-do-dia-a-dia)
+  - [Salvar para continuar depois](#salvar-para-continuar-depois)
+  - [Salvar para continuar depois](#salvar-para-continuar-depois)
+  - [Git Checkout outras funções](#git-checkout-outras-funções)
+  - [Comandos especiais](#comandos-especiais)
+
 ## Configurações globais do 'GIT'
 
 ```

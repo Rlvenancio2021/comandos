@@ -1,5 +1,47 @@
 # Kubernetes
 
+## Índice
+
+- [O que é o Kubernetes](#o-que-é-o-kubernetes)
+- [POD](#pod)
+- [O que é um cluster Kubernetes](#o-que-é-um-cluster-kubernetes)
+  - [Componentes do Kubernetes](#componentes-do-kubernetes)
+- [O que é um Pod](#o-que-é-um-pod)
+- [Resumo](#resumo)
+- [Ferramenta](#ferramenta)
+- [Instalação no Ubuntu](#instalação-no-ubuntu)
+- [Comandos Minikube](#comandos-minikube)
+- [Comandos Kubectl](#comandos-kubectl)
+- [Provisão em núvem](#provisão-em-núvem)
+  - [AWS](#aws)
+    - [Provisionamento de servidores na AWS](#provisionamento-de-servidores-na-aws)
+    - [Criando cluster EKS](#criando-cluster-eks)
+    - [Criando nós para o Cluster](#criando-nós-para-o-cluster)
+    - [Parar os serviços na Núvem](#parar-os-serviços-na-núvem)
+  - [GCP(Google)](#gcp-google)
+    - [Comandos do Gcloud GCP](#comandos-do-gcloud-gcp)
+  - [Local](#local)
+- [Arquivo YAML](#arquivo-yaml)
+  - [Definir versão](#definir-versão)
+- [Provisionando um Objeto](#provisionando-um-objeto)
+- [Comandos do dia-a-dia do KUBECTL](#comandos-do-dia-a-dia-do-kubectl)
+- [Exposição da aplicação](#exposição-da-aplicação)
+- [Criando uma imagem Docker e Expondo a Aplicação](#criando-uma-imagem-docker-e-expondo-a-aplicação)
+- [LoadBalancer](#loadbalancer)
+- [Criando um NodePort](#criando-um-nodeport)
+  - [Na Núvem](#na-núvem)
+  - [Local](#local)
+- [Executando aplicações no Pod](#executando-aplicações-no-pod)
+  - [Acessando POD diretamente](#acessando-pod-diretamente)
+  - [Criando um POD de Banco de dados e criando porta de acesso](#criando-um-pod-de-banco-de-dados-e-criando-porta-de-acesso)
+  - [Criando Estrutura completa](#criando-estrutura-completa)
+- [Persistência de Dados](#persistência-de-dados)
+  - [Persistência em núvem GCP](#persistência-em-núvem-gcp)
+- [Gerenciamento de Deploy e Roolback em Clusters Kubernetes](#gerenciamento-de-deploy-e-roolback-em-clusters-kubernetes)
+- [Senhas dentro de um Cluster](#senhas-dentro-de-um-cluster)
+- [Google Cloud Deploy](#google-cloud-deploy)
+
+
 ### O que é o Kubernetes
 
 O Kubernetes (K8s) é uma ferramente (open source) de orquestração de containers originalmente desenvolvida pelo Google.
@@ -26,7 +68,7 @@ Recuperação de desastre (Backup/Restore).
 
 1. Criar um cluster Kubernetes
 2. Implantar um aplicativo
-  # POD
+ **POD**
  - Menor unidade do Kubernetes;
  - Uma abstração sobre o container;
  - Normalmente é executado uma aplicação por Pod;
@@ -207,7 +249,7 @@ $ kubectl cp <NOME DO ARQUIVO> <NOME>:<CAMINHO ONDE SALVAR O ARQUIVO>
 $ kubectl cp mysql-5fd4977b45-rw7ml:/var/lib/mysql
 ```
 
-## Provisão em núvem
+# Provisão em núvem
 
 ## AWS
 
@@ -296,7 +338,7 @@ $ kubectl get nodes --watch
 
 ## FIM AWS
 
-##  GCP (Google)
+## GCP (Google)
 
 *site* https://console.cloud.google.com/
 
@@ -457,9 +499,11 @@ $ kubectl scale deployment app-html-deployment --help # para ver mais opções
 
 ### Definir versão
 
-**Pod -->> "v1"
-Deployment -->> "apps/v1"
-Service -->> "v1"**
+**Pod -->> "v1"**
+
+**Deployment -->> "apps/v1"**
+
+**Service -->> "v1"**
 
 ## Provisionando um Objeto
 
@@ -683,7 +727,7 @@ $ kubectl apply -f <NOME DO ARQUIVO QUE CRIA O NODEPORT>
 $ kubectl exec --stdin --tty myapp-php -- /bin/bash
 ```
 
-### Criaando um POD de Banco de dados e criando porta de acesso
+### Criando um POD de Banco de dados e criando porta de acesso
 
 Para criar um POD de banco de dados o arquivo YAML fica preenchido
 ```

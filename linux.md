@@ -1,5 +1,29 @@
 # Comandos do Terminal Linux
 
+## Índice
+
+- [Comandos Servidor Linux](#comandos-servidor-linux)
+- [Usuário Administrador e Grupos](#usuário-administrador-e-grupos)
+- [Permissões](#permissões)
+- [Editor de Texto VIM e NANO](#editor-de-texto-vim-e-nano)
+- [Comandos para o dia-a-dia](#comandos-para-o-dia-a-dia)
+	- [variáveis do comando ls](#variáveis-do-comando-ls)
+	- [Comandos para atualização do sistema](#comandos-para-atualização-do-sistema)
+	- [Demais comandos interessantes](#demais-comandos-interessantes)
+- [Gerenciamento de Pacotes](#gerenciamento-de-pacotes)
+- [Gerenciamento de Disco](#gerenciamento-de-disco)
+	- [Acesso a Disco Externo](#acesso-a-disco-externo)
+- [Manipulação de Arquivos](#manipulação-de-arquivos)
+- [Servidor Linux](#servidor-linux)
+	- [Servidor de Arquivos](#servidor-de-arquivos)
+- [Servidor Web](#servidor-web)
+- [Servidor de Banco de Dados](#servidor-de-banco-de-dados)
+- [Teclas de atalho no terminal](#teclas-de-atalho-no-terminal)
+	- [Comandos para instalação de pacotes e programas](#comandos-para-instalação-de-pacotes-e-programas)
+	- [Comandos para instalação do MySQL](#comandos-para-instalação-do-mysql)
+- [Comandos do Python](#comandos-do-python)
+- [Gera chave ssh](#gera-chave-ssh)
+
 ## Comandos Servidor Linux
 
 - Comando para exibir os números de IP, o IP estará na propriedade "enp0s3" no "inet"
@@ -547,7 +571,7 @@ sudo apt-get install virtualbox-guest-additions-iso
 
 ### Comandos para instalação do MySQL ###
 
-1. # Instalando o MySQl e verificando status do sistema #
+1. **Instalando o MySQl e verificando status do sistema**
 
 1.1. sudo apt install mysql-server - Comando para realizar a instação do MySQL
 
@@ -557,7 +581,7 @@ sudo apt-get install virtualbox-guest-additions-iso
 
 1.3. mysql --version - Comando para verificar a versão do mysql
 
-2. # Configurando o MySQL #
+2. **Configurando o MySQL**
 
 2.1 sudo mysql_secure_installation - Altera configurações de segurança
 

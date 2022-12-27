@@ -2,6 +2,7 @@
 
 ## Índice
 
+- [Kernel Linux](#kernel-linux)
 - [Comandos Servidor Linux](#comandos-servidor-linux)
 - [Usuário Administrador e Grupos](#usuário-administrador-e-grupos)
 - [Permissões](#permissões)
@@ -23,6 +24,21 @@
 	- [Comandos para instalação do MySQL](#comandos-para-instalação-do-mysql)
 - [Comandos do Python](#comandos-do-python)
 - [Gera chave ssh](#gera-chave-ssh)
+
+## Kernel Linux
+
+*Obs* Antes de realizar a atualização da Kernel é necessário verificar a se a nova versão é estável ou os riscos da atualização.
+
+- Comnado para verificar a versão da Kernel
+```
+$ uname -a
+$ uname -r
+```
+
+- Comando para atualizar a Kernel linux
+```
+$ do-release-upgrade
+```
 
 ## Comandos Servidor Linux
 

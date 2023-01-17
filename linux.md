@@ -599,7 +599,11 @@ sudo apt-get install virtualbox-guest-additions-iso
 
 2. **Configurando o MySQL**
 
-2.1 sudo mysql_secure_installation - Altera configurações de segurança
+2.1 Para configuração da senha do usuário root existem duas possibilidades:
+
+  2.1.1 Logar com o usuário root no linux, acessar o mysql e rodar o comando descrito no item 2.3 abaixo, ou;
+
+  2.1.2 Realizar por meio de configuração de segurança com o comando - ```sudo mysql_secure_installation```
 
 2.3 ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'password'; - Comando para altar o usário root, faz com que solicite uma senha de autenticação. No 'password' é o local onde ESCREVEMOS a SENHA DESEJADA.
 

@@ -66,6 +66,11 @@ $ git tag //Lista todas as Tags disponíveis
 $ git push <nome do repositório> <nome da TAG> //Envia a Tag para o repositório remoto  
 ```
 
+Para remover uma tag seguir o seguinte comando
+```
+$ git tag -d <nome da Tag/Versionado do APP>
+```
+
 ## Criar repositório para controle de alterações
 
 ### Repositório Local

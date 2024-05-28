@@ -96,7 +96,7 @@ Para atribuir senha ao usuário existente, o comando é
 $ sudo passwd <nome do usuário>
 ```
 
-- Arquivo SSHD 
+- Arquivo SSHD
 
 É o portal de acesso ao sistema via SSH, guarda o log de todas as tentativas e acessos realizados no sistema
 
@@ -140,7 +140,7 @@ $ useradd <nome do usuário> -m -c "nome completo do usuário" -s /bin/bash -e 2
 ***Realiza alterações no usuário***
 
 ```
-$ usermod <nome do usuário> <parâmetro que deseja alterar> # Exemplo: $ usermod guest -e 30/09/2022 # Comando para realizar alterações nos parâmetros de um usuário 
+$ usermod <nome do usuário> <parâmetro que deseja alterar> # Exemplo: $ usermod guest -e 30/09/2022 # Comando para realizar alterações nos parâmetros de um usuário
 
 $ passwd <nome do usuário> # Comando para criar ou alterar senha de usuário, pode ser usado com os parâmtros:
 	-e # podemos passar data para expirar a senha ou, se não informar a data será necessário uma nova senha nesse momento
@@ -168,7 +168,7 @@ $ chsh -s /bin/bash <nome do usuário>
 ```
 
 ***Criar script de execução para criação de usuário***
-Criamos na raiz do sistema uma pasta chamado **scripts** e dentro dela um arquivo, no exemplo, de nome "**create_user.sh**", importante ser com a extensão ".sh" e na primeira linha do arquivo o comando ```#!/bin/bash``` e no corpo do arquivo escrevemos os comandos da 
+Criamos na raiz do sistema uma pasta chamado **scripts** e dentro dela um arquivo, no exemplo, de nome "**create_user.sh**", importante ser com a extensão ".sh" e na primeira linha do arquivo o comando ```#!/bin/bash``` e no corpo do arquivo escrevemos os comandos da
 mesma maneira que seria escrito no terminal
 Necessário conceder permissão de execução para o arquivo, com o comando, poderá observar que o arquivo irá trocar de cor
 
@@ -194,10 +194,10 @@ $ cat /etc/group
 
 ```
 $ usermod -g <nome do grupo> <nome do usuário>
-	  -G <nome do grupo>,<nome do grupo> <nome do usuário> 
+	  -G <nome do grupo>,<nome do grupo> <nome do usuário>
 ```
 
-Usando -g ou -G o usuário é migrado de grupo, ou seja, sai dos grupos que já estavam e passa para o grupo indicado no comando, para 
+Usando -g ou -G o usuário é migrado de grupo, ou seja, sai dos grupos que já estavam e passa para o grupo indicado no comando, para
 manter no mesmo grupos anteriores é necessário indicar os grupos que ela deve pertencer
 Agora para excluir de apenas um grupo o comando é
 
@@ -208,7 +208,7 @@ $ gpasswd -d <nome do usuário> <nome do grupo que será removido>
 - Criar Grupo
 
 Grupos servem como uma forma de criar permissão de acesso, assim todos os usuários constante no grupo herdam as permissões que o grupo tem, é uma forma mais fácil de gerenciar permissões.
-Comando para alterar os grupos dos usuário ```usermod -G ou -g``` é necessário **listar todos os grupos que o usuário deva pertencer**, 
+Comando para alterar os grupos dos usuário ```usermod -G ou -g``` é necessário **listar todos os grupos que o usuário deva pertencer**,
 comando para excluir um grupo do usuário é o ```gpasswd -d```.
 
 ```
@@ -233,7 +233,7 @@ Os valores de leitura, gravação e execução possuem um valor que os represent
 
 A utilização desses valores é por meio de soma, exemplo para dar permissão de leitura/gravação/execução informa o valor "7".
 
-A representação de uma pasta e/ou diretório no Linux é da seguinte forma: 
+A representação de uma pasta e/ou diretório no Linux é da seguinte forma:
 
  - permissões
  - qtde arquivos
@@ -241,10 +241,10 @@ A representação de uma pasta e/ou diretório no Linux é da seguinte forma:
  - grupo
  - tamanho
  - data
- - diretório/arquivo 
+ - diretório/arquivo
 
 ```
-drwxr-xr-x	1		root     	root    7 		set 23 14:42 	adm 
+drwxr-xr-x	1		root     	root    7 		set 23 14:42 	adm
 ```
 
 O **root** é o super usuário do sistema. Podemos **altera o dono e/ou grupo** de um **arquivo/diretório** com o comando ```chown``` ***change owner***
@@ -288,6 +288,13 @@ $ :wq # Salva e fecha o arquivo
 $ :q! # Fecha sem salvar
 ```
 
+Comandos para salvar um arquivo aberto com usuário normal, porém que só pode ser salvo com usuário root
+```
+$ :w !sudo tee % # O sinal "%" representa o nome do arquivo
+$ :w !sudo tee "%" # Quando houver espaço no nome do arquivo
+$ :w ! sudo cat > %
+```
+
 ## Comandos para o dia-a-dia
 
  - Comando para listar conteúdo de um diretório
@@ -312,10 +319,10 @@ $ ls -R /<nome de um diretório>/ # Irá listar o conteúdo de todos os diretór
 	[1-3] - lista do 1 ao 3
 	[2,5] - lista o 2 e o 5
 	[^3-5] - não lista do 3 ao 5
-	
+
  - Essas variáveis podem ser utlizadas para excluir, copiar, filtrar arquivos entre outros, teste para saber!!
 
-- Comandos de busca de arquivos "find" é utilizado em conjunto com parâmetros, irá listar os arquivos e caminhos encontrados a 
+- Comandos de busca de arquivos "find" é utilizado em conjunto com parâmetros, irá listar os arquivos e caminhos encontrados a
 partir do diretório que estiver logado.
 
 ```
@@ -344,7 +351,7 @@ $ echo <texto a escrever no arquivo> >> <nome do arquivo>
 
 *Obs* **">"** escrever por cima, **">>"** adiciona na última linha
 
-- Comando history, server para verificar o historico de comandos realizados por um determinado usuários, também permite o 
+- Comando history, server para verificar o historico de comandos realizados por um determinado usuários, também permite o
 reaproveitamento do comando passando para o sistema o número dele na lista:
 
 ```
@@ -369,11 +376,11 @@ $ set +o history # desativa armazenamento
 $ set -o history # ativa armazenamento
 ```
 
-O history armazena por padrão os 1.000 últimos comandos, para altera é necessário realizar alteraça dentro do arquivo **.bashrc** 
+O history armazena por padrão os 1.000 últimos comandos, para altera é necessário realizar alteraça dentro do arquivo **.bashrc**
 de cada usuário, no parâmetro **HISTSIZE**.
 
-Para cria um arquivo com todos os comandos que foram executados pelo usuário logado, usar o comando ```$ history -w``` irá criar um 
-arquivo **.bash_history** na pasta do usuário com as informações listadas, é possível determinar o seu tamanho pelo parâmetro 
+Para cria um arquivo com todos os comandos que foram executados pelo usuário logado, usar o comando ```$ history -w``` irá criar um
+arquivo **.bash_history** na pasta do usuário com as informações listadas, é possível determinar o seu tamanho pelo parâmetro
 **HISTFILESIZE** no arquivo **.bashrc**.
 
 
@@ -457,7 +464,7 @@ $ mkfs.<formado do disco> /dev/<disco desejado>
 $ mkfs.ext4 /dev/sdb
 ```
 
-- Montar o Disco, para usar no sistema, usar comando 
+- Montar o Disco, para usar no sistema, usar comando
 
 ```
 $ mount /dev/<disco desejado> /mnt/<diretório desejado>
@@ -480,7 +487,7 @@ $ vim /etc/fstab
 ```
 
 "ext4" representa o sistema de arquivos que o disco em questão foi formatado
-"0 0" é um padrão para uso em backups, **pesquisar sobre o tema** 
+"0 0" é um padrão para uso em backups, **pesquisar sobre o tema**
 
 
 ### Acesso a Disco Externo
@@ -503,7 +510,7 @@ $ mv # Mover
 Para mover pastas é necessário fazer pasta por pasta (No Ubuntu, necessário verificar nas demais distribuições)
 
 ```
-$ cp <endereço e nome do arquivo - ORIGEM> <endereço - DESTINO> 
+$ cp <endereço e nome do arquivo - ORIGEM> <endereço - DESTINO>
  # Ex.:
 $ cp /home/usuario/arquivo.txt /disk2/ # ou
 $ cp arquivo.txt /disk2/ # ou
@@ -638,7 +645,7 @@ $ apt install mysql-server-8.0
 
 Não é necessário informar a versão do sistema que deseja baixar, assim será instalada a versão mais atualizada.
 
-Desta forma o usuário padrão para acessar o Banco de Dados será o root pelo comando 
+Desta forma o usuário padrão para acessar o Banco de Dados será o root pelo comando
 
 ```
 $ mysql -uroot -p
@@ -676,7 +683,7 @@ Depois de logar no "MySQL"
 	- sudo apt-get install virtualbox-guest-additions-iso
 	- Ir no Menu Divices/Insert Guest additiions
 	- Abrir terminal e rodar o comando
-	
+
 	```
 	$ ./autorun.sh
 	```
@@ -745,7 +752,7 @@ Depois de logar no "MySQL"
 
 	```
 	$ sudo mysql
-	
+
 	$ mysql -u<nome do usuário> -p
 	```
 
@@ -788,31 +795,31 @@ Depois de logar no "MySQL"
 
 ## Comandos do Python ##
 
-1. Necessário instalar o gerenciador de pacotes PIP comando: 
+1. Necessário instalar o gerenciador de pacotes PIP comando:
 
 ```
 $ sudo apt install python3-pip
 ```
 
-2. Necessário instalar Python3-venv comando: 
+2. Necessário instalar Python3-venv comando:
 
 ```
 $ apt install python3.10-venv e sudo pip3 install virtualenv
 ```
 
-3. Rodar comando de criação da pasta venv: 
+3. Rodar comando de criação da pasta venv:
 
 ```
 $ python3 -m venv ./venv #nome dado ao arquivo
 ```
 
-4. Rodar comando para ativar o ambiente virtual: 
+4. Rodar comando para ativar o ambiente virtual:
 
 ```
 $ surce <caminho da pasta (opcional)> venv/bin/activate
 ```
 
-5. Para desativar o ambiente virtual: 
+5. Para desativar o ambiente virtual:
 
 ```
 $ deactivate
@@ -820,7 +827,7 @@ $ deactivate
 
 
 ## Gera chave ssh
- Comando 
+ Comando
 
 ```
 ssh -keygen -f ~/.ssh/<nome desejado> -t <OPICIONAL especificação da chave> -b 4096 //Verificar parametros no menu help "ssh-keygen --help"

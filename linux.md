@@ -441,6 +441,26 @@ $ apt edit-sources
 - Pode utilizar o **apt** para instalação ```$ apt install ./<nome do arquivo com extensão>```, necessário navegar até a pasta onde o arquivo está guardado, para para baixar o arquivo utiliza-se o comando ```$ wget <endereço para download>```
 - Comando para instalação de arquivos ```$ dpkg -i <nome do arquivo>```
 
+**Atualiza chave público do pacote "APT"**
+
+1. Adicionar a chave pública do repositório
+
+```
+$ curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+```
+
+2. Adicionar o repositório ao seu **sources.list**
+
+```
+$ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+```
+
+3. Atualizar os pacotes
+
+```
+$ sudo apt update
+```
+
 ## Gerenciamento de Disco
 
 Comando para lista os disco ```lsblk```, os disco iniciam com a letra **sd** e são complementados com as letras **a, b, c, ...** para cada disco adicional que a máquina possuir caso tenha uma partição será respresentado com um número ex. **sda1, sda2, ...**, loop são discos virtuais criado por algum pacote instalado.

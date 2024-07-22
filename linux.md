@@ -276,6 +276,60 @@ $ chomd -x <nome do arquivo>
 
 Sendo **"+x"** para liberar permissão e **"-x"** para tirar a permissão.
 
+### Permissões Especiais
+
+**SUID** e **SGID** são um tipo especial de permissões de arquivos
+
+ - SUID Set User ID diz respeito ao usuário proprietário
+ - SGID Set Group ID diz respeito ao grupo
+
+Em ambos os casos para habilitar ou desabilitar a permissão é por meio do comando ***chmod***
+
+Os valores para inclusão dessas permissões são **4 para SUID** e **2 para SGID** acrescentando depois os valores dos tipos comuns, ficando da seguinte forma:
+
+```
+$ chmod 4744 <nome do arquivo>
+
+$ chmod 2744 <nome do arquivo>
+
+$ chmod 6744 <nome do arquivo>
+```
+
+Os resultado serão:
+
+- Antes
+
+```
+-$ ls -l
+# Resultado do comando ls
+rwxr--r-- 1 rlvenancio users    0 Jul 21 22:13 arquivo.txt
+
+```
+- Despois
+
+
+```
+$ ls -l
+# Resultado do comando ls
+-rwsr--r-- 1 rlvenancio users    0 Jul 21 22:13 arquivo.txt
+-rwxr-Sr-- 1 rlvenancio users    0 Jul 21 22:13 arquivo.txt
+-rwsr-Sr-- 1 rlvenancio users    0 Jul 21 22:13 arquivo.txt
+```
+
+Nos campos de identificação das permissões do arquivo irá aparecer a letra  **"s"** ou **"S"**, uma vez que ele ocupa a mesma posição da letra que representa a permissão de execução, se o "s" for minúsculo, significa que além da permissão especial também tem a permissão de execução, se for maiúsculo, tem apenas a permissão especial.
+
+Essa permissão aparece quando o usuário tem permissão temporária para executar um arquivo ou programa com permissão de proprietário, ou seja, mesmo não tendo privilégios de administrador do sistem.
+
+É um tipo de permissão que precisa ser muito bem administrado, pois pode permite escalabilidade de permissões, exemplo se um arquivo ".py" ou o programa "vim" tiver este tipo de permissão, em caso de uma invasão da máquina este programa e/ou arquivo pode permitir a criação de um subprocesso ou um shell, que vai herdar essa permissão e assim, pode assumir o papel de root e por consequencia o controle total da máquina.
+
+Para pesquisar se algum arquivo ou programa possui esta permissão, usando o **find** podemos usar os seguintes comandos
+
+```
+$ find / -perm /2744
+$ find / -perm /2000
+$ find / -perm /6000
+```
+
 ## Editor de Texto VIM e NANO
 
 **Vim**
